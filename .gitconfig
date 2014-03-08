@@ -1,0 +1,17 @@
+[http]
+	sslverify = false
+[user]
+	name = liamjbennett
+	email = liamjbennett@gmail.com
+
+[hub]
+protocol = https
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[core]
+	editor = vim
+	excludesfile = /Users/liamjbennett/.gitignore_global
+[push]
+	default = simple
