@@ -12,7 +12,8 @@ helper = /opt/boxen/bin/boxen-git-credential
 
 [core]
 	editor = vim
-	excludesfile = /Users/liamjbennett/.gitignore_global
+  excludesfile = /opt/boxen/config/git/gitignore
+
 [push]
 	default = simple
 [alias]
