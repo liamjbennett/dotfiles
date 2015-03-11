@@ -33,7 +33,7 @@ syntax on
 " Highlight current line       
 set cursorline
 " Make tabs as wide as two spaces
-set tabstop=2
+set tabstop=2 shiftwidth=2 expandtab
 " Highlight searches
 set hlsearch
 " Ignore case of searches
@@ -73,23 +73,28 @@ function! StripWhitespace()
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 
-" =============== Vundle Initialization ===============
-" This loads all the plugins specified in ~/.vim/vundle.vim
-" Use Vundle plugin to manage all other plugins
-if filereadable(expand("~/.vim/vundles.vim"))
-	source ~/.vim/vundles.vim
-endif
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-vinegar'
+Plugin 'scrooloose/syntastic'
+Plugin 'rodjek/vim-puppet'
+
+call vundle#end() 
 
 syntax enable
 set background=dark
-let g:solarized_termcolors = 256
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+let g:solarized_termtrans = 1
+let g:solarized_termcolors=256
+
 colorscheme solarized
 
-let g:NERDTreeWinPos = "left"
-let g:NERDTreeWinSize = 20
-set splitright
+
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_liststyle = 3
 
 let g:vim_markdown_folding_disabled=1
 
