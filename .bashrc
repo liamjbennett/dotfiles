@@ -1,8 +1,9 @@
 #export PS1="\\u@\W\\$ "
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export VAGRANT_DEFAULT_PROVIDER="virtualbox"
 export GOPATH=$HOME/Dev/go
+export RBENV_ROOT=/usr/local/var/rbenv
 
 alias vi='vim'
 
@@ -51,3 +52,6 @@ setTerminalText () {
 stt_both  () { setTerminalText 0 $@; }
 stt_tab   () { setTerminalText 1 $@; }
 stt_title () { setTerminalText 2 $@; }
+
+# added by travis gem
+[ -f /Users/liamjbennett/.travis/travis.sh ] && source /Users/liamjbennett/.travis/travis.sh
