@@ -80,6 +80,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias rake="noglob rake"
 
 # added by travis gem
 [ -f /Users/liamjbennett/.travis/travis.sh ] && source /Users/liamjbennett/.travis/travis.sh
+
+export PATH="/usr/local/sbin:$PATH"

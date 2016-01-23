@@ -63,6 +63,12 @@ set history=1000
 au BufNewFile,BufRead,BufEnter *.txt setlocal spell spelllang=en_gb
 au BufNewFile,BufRead,BufEnter *.md setlocal spell spelllang=en_gb
 
+au BufNewFile,BufReadPost *.md set filetype=markdown
+augroup markdown
+  au!
+  au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
         let save_cursor = getpos(".")
@@ -73,16 +79,15 @@ function! StripWhitespace()
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+let mapleader="\<SPACE>"
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-vinegar'
-Plugin 'scrooloose/syntastic'
-Plugin 'rodjek/vim-puppet'
-
-call vundle#end() 
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'https://github.com/bling/vim-bufferline'
+call plug#end()
 
 syntax enable
 set background=dark
@@ -91,15 +96,23 @@ let g:solarized_termcolors=256
 
 colorscheme solarized
 
-
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_liststyle = 3
-
-let g:vim_markdown_folding_disabled=1
-
 " adding nicer key bindings for copying to system clipboard
 vmap <C-x> :!pbcopy<CR> 
 vmap <C-c> :w !pbcopy<CR><CR> 
 
-filetype plugin indent on     " required!
+" Open file menu
+nnoremap <Leader>o :CtrlP<CR>
+" Open buffer menu
+nnoremap <Leader>b :CtrlPBuffer<CR>
+" Open most recently used files
+nnoremap <Leader>f :CtrlPMRUFiles<CR>
+
+
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0 
+
+nnoremap tn :tabnew<CR>
+nnoremap tj :tabnext<CR>
+nnoremap tk :tabprev<CR>
