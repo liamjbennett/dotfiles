@@ -1,13 +1,22 @@
 #export PS1="\\u@\W\\$ "
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export VAGRANT_DEFAULT_PROVIDER="virtualbox"
 export GOPATH=$HOME/development/go_code
 export RBENV_ROOT=/usr/local/var/rbenv
-export PATH="$PATH:$GOPATH/bin"
+export JENV_ROOT=/usr/local/opt/jenv
+export PYTHON_27=$HOME/Library/Python/2.7
+export PATH="$PATH:$GOPATH/bin:$PYTHON_27/bin"
+
+powerline-daemon -q
+. $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 alias vi='vim'
+alias vim='nvim'
+
 alias rake="noglob rake"
 
 alias ga='git add'
@@ -69,13 +78,8 @@ cg() {
 wifi() {
   networksetup -setairportpower en1 $1
 }
-vpn() {
-  scutil --nc start "VPN (otra)"
-}
 
 alias tunnel='ssh -D 1337 -f -C -q -N lbennett@86.14.255.54 -p 22'
-
-alias outlook='/Applications/Microsoft\ Outlook.app/Contents/MacOS/Microsoft\ Outlook > /dev/null 2>&1 &'
 
 setTerminalText () {
 	if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then

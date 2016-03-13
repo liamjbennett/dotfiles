@@ -60,8 +60,8 @@ set showcmd
 set history=1000 
 
 " Spell checking for text files
-au BufNewFile,BufRead,BufEnter *.txt setlocal spell spelllang=en_gb
-au BufNewFile,BufRead,BufEnter *.md setlocal spell spelllang=en_gb
+" au BufNewFile,BufRead,BufEnter *.txt setlocal spell spelllang=en_gb
+" au BufNewFile,BufRead,BufEnter *.md setlocal spell spelllang=en_gb
 
 au BufNewFile,BufReadPost *.md set filetype=markdown
 augroup markdown
@@ -81,37 +81,79 @@ noremap <leader>ss :call StripWhitespace()<CR>
 
 let mapleader="\<SPACE>"
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'altercation/vim-colors-solarized'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'https://github.com/bling/vim-bufferline'
+" Plug 'scrooloose/syntastic'
+Plug 'Shougo/neocomplete'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-markdown'
+Plug 'jtratner/vim-flavored-markdown'
+Plug 'tpope/vim-fugitive'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe'
+Plug 'voxpupuli/vim-puppet'
+Plug 'reedes/vim-thematic'
+Plug 'reedes/vim-pencil'
 call plug#end()
 
-syntax enable
-set background=dark
-let g:solarized_termtrans = 1
-let g:solarized_termcolors=256
 
-colorscheme solarized
+let g:thematic#themes = {
+\  'solarized_dark': { 'colorscheme': 'solarized', 
+\                      'background': 'dark', 
+\                      'solarized_termtrans': '1',
+\                      'solarized_termcolors': '256',
+\                    },
+\  'solarized_light': { 'colorscheme': 'solarized',
+\                       'background': 'light',
+\                     },
+\  'pencil_dark': { 'colorscheme': 'pencil', },
+\  'pencil_light': { 'colorscheme': 'pencil', 'background': 'light', }
+\ }
+let g:thematic#theme_name = 'solarized_dark'
+
+" syntastic settings
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+set switchbuf+=usetab,newtab
+
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.DS_Store$', '\.vim$']
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+let g:python_host_prog = '/usr/local/bin/python'
 
 " adding nicer key bindings for copying to system clipboard
 vmap <C-x> :!pbcopy<CR> 
 vmap <C-c> :w !pbcopy<CR><CR> 
 
 " Open file menu
-nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>t :CtrlP<CR>
 " Open buffer menu
 nnoremap <Leader>b :CtrlPBuffer<CR>
 " Open most recently used files
 nnoremap <Leader>f :CtrlPMRUFiles<CR>
 
+nnoremap <Leader>e :NERDTreeTabsToggle<CR>
 
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0 
 
 nnoremap tn :tabnew<CR>
 nnoremap tj :tabnext<CR>
