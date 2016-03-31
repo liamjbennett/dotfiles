@@ -1,7 +1,6 @@
 #export PS1="\\u@\W\\$ "
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
+eval "$(rbenv init -)"
+eval "$(jenv init -)"
 
 export EDITOR='nvim'
 export VAGRANT_DEFAULT_PROVIDER="virtualbox"

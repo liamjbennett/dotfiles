@@ -101,6 +101,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'voxpupuli/vim-puppet'
 Plug 'reedes/vim-thematic'
 Plug 'reedes/vim-pencil'
+Plug 'hashivim/vim-hashicorp-tools'
 call plug#end()
 
 
