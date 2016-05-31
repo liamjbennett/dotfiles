@@ -25,7 +25,7 @@ alias gpm='git pull parent master'
 alias glp='git log --pretty=oneline --abbrev-commit'
 alias gra='git remote add'
 alias gcb='git checkout -b'
-alias gcm='git commit -m'
+alias gcm='git commit -S -m'
 alias gbls='git branch --list'
 alias gmc='git status | grep "modified:" | wc -l'
 gbp() {
